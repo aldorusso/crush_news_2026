@@ -1,0 +1,418 @@
+/**
+ * PRINT CSS OPTIMIZATION
+ *
+ * Estilos optimizados para impresión de artículos
+ * Elimina elementos innecesarios y mejora la legibilidad
+ *
+ * Importar en gatsby-browser.js:
+ * import './src/styles/print.css'
+ */
+
+@media print {
+  /* ========================================
+     RESET Y CONFIGURACIÓN BÁSICA
+     ======================================== */
+
+  * {
+    background: transparent !important;
+    color: #000 !important; /* Negro para impresión */
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 12pt;
+    line-height: 1.6;
+  }
+
+  /* ========================================
+     OCULTAR ELEMENTOS INNECESARIOS
+     ======================================== */
+
+  /* Navegación y Header */
+  header,
+  nav,
+  .header,
+  .navigation,
+  .menu,
+  .navbar {
+    display: none !important;
+  }
+
+  /* Footer */
+  footer,
+  .footer {
+    display: none !important;
+  }
+
+  /* Sidebar y elementos laterales */
+  aside,
+  .sidebar,
+  .widget,
+  .post-list {
+    display: none !important;
+  }
+
+  /* Botones y controles interactivos */
+  button,
+  .button,
+  .btn,
+  input[type="button"],
+  input[type="submit"],
+  .back-to-top,
+  .skip-to-content {
+    display: none !important;
+  }
+
+  /* Formularios */
+  form,
+  .form,
+  .search-form,
+  .newsletter-form,
+  .comment-form {
+    display: none !important;
+  }
+
+  /* Social sharing */
+  .social-share,
+  .share-buttons,
+  .social-media {
+    display: none !important;
+  }
+
+  /* Comentarios */
+  .comments,
+  .comment-section,
+  #comments {
+    display: none !important;
+  }
+
+  /* Publicidad */
+  .ad,
+  .ads,
+  .advertisement,
+  .ad-slot,
+  iframe[src*="ads"],
+  iframe[src*="doubleclick"] {
+    display: none !important;
+  }
+
+  /* Related articles y similares */
+  .related-articles,
+  .recommended,
+  .trending {
+    display: none !important;
+  }
+
+  /* Breadcrumbs (opcional, puedes dejarlo si lo necesitas) */
+  .breadcrumbs {
+    font-size: 9pt;
+    color: #666 !important;
+  }
+
+  /* Videos e iframes */
+  video,
+  iframe,
+  embed,
+  object {
+    display: none !important;
+  }
+
+  /* Galería de imágenes (carousel) */
+  .carousel,
+  .slider,
+  .swiper {
+    display: none !important;
+  }
+
+  /* ========================================
+     ESTILOS PARA CONTENIDO PRINCIPAL
+     ======================================== */
+
+  /* Contenedor principal */
+  main,
+  article,
+  .article-container,
+  .article-content {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    float: none !important;
+  }
+
+  /* Título del artículo (H1) */
+  h1 {
+    font-size: 24pt;
+    font-weight: bold;
+    margin-bottom: 12pt;
+    page-break-after: avoid;
+  }
+
+  /* Subtítulos */
+  h2 {
+    font-size: 18pt;
+    font-weight: bold;
+    margin-top: 18pt;
+    margin-bottom: 10pt;
+    page-break-after: avoid;
+  }
+
+  h3 {
+    font-size: 14pt;
+    font-weight: bold;
+    margin-top: 14pt;
+    margin-bottom: 8pt;
+    page-break-after: avoid;
+  }
+
+  h4,
+  h5,
+  h6 {
+    font-size: 12pt;
+    font-weight: bold;
+    margin-top: 12pt;
+    margin-bottom: 6pt;
+    page-break-after: avoid;
+  }
+
+  /* Párrafos */
+  p {
+    font-size: 12pt;
+    line-height: 1.6;
+    margin-bottom: 12pt;
+    text-align: justify;
+    orphans: 3;
+    widows: 3;
+  }
+
+  /* Meta información del artículo */
+  .article-meta {
+    font-size: 10pt;
+    color: #666 !important;
+    margin-bottom: 18pt;
+    padding-bottom: 6pt;
+    border-bottom: 1px solid #ccc !important;
+  }
+
+  /* Imagen principal */
+  .article-image,
+  figure {
+    max-width: 100%;
+    margin: 12pt 0;
+    page-break-inside: avoid;
+  }
+
+  figure img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  figcaption {
+    font-size: 10pt;
+    font-style: italic;
+    color: #666 !important;
+    margin-top: 6pt;
+  }
+
+  /* Imágenes en general */
+  img {
+    max-width: 100%;
+    height: auto;
+    page-break-inside: avoid;
+  }
+
+  /* ========================================
+     LISTAS
+     ======================================== */
+
+  ul,
+  ol {
+    margin: 12pt 0;
+    padding-left: 24pt;
+  }
+
+  li {
+    margin-bottom: 6pt;
+    page-break-inside: avoid;
+  }
+
+  /* ========================================
+     ENLACES
+     ======================================== */
+
+  a {
+    color: #000 !important;
+    text-decoration: underline;
+  }
+
+  /* Mostrar URLs de enlaces importantes */
+  a[href^="http"]:after {
+    content: " (" attr(href) ")";
+    font-size: 9pt;
+    color: #666 !important;
+  }
+
+  /* No mostrar URLs para enlaces internos */
+  a[href^="/"]:after,
+  a[href^="#"]:after {
+    content: "";
+  }
+
+  /* ========================================
+     BLOCKQUOTES Y CITAS
+     ======================================== */
+
+  blockquote {
+    margin: 12pt 24pt;
+    padding: 6pt 12pt;
+    border-left: 3pt solid #ccc !important;
+    font-style: italic;
+    page-break-inside: avoid;
+  }
+
+  /* ========================================
+     CÓDIGO
+     ======================================== */
+
+  code,
+  pre {
+    font-family: "Courier New", monospace;
+    font-size: 10pt;
+    background: #f5f5f5 !important;
+    border: 1px solid #ccc !important;
+  }
+
+  code {
+    padding: 2pt 4pt;
+  }
+
+  pre {
+    padding: 6pt;
+    overflow: visible;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    page-break-inside: avoid;
+  }
+
+  /* ========================================
+     TABLAS
+     ======================================== */
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 12pt 0;
+    font-size: 10pt;
+    page-break-inside: avoid;
+  }
+
+  th,
+  td {
+    border: 1px solid #ccc !important;
+    padding: 6pt;
+    text-align: left;
+  }
+
+  th {
+    font-weight: bold;
+    background: #f0f0f0 !important;
+  }
+
+  /* ========================================
+     SALTOS DE PÁGINA
+     ======================================== */
+
+  /* Evitar saltos de página después de encabezados */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    page-break-after: avoid;
+  }
+
+  /* Evitar saltos de página dentro de estos elementos */
+  figure,
+  img,
+  blockquote,
+  pre,
+  table {
+    page-break-inside: avoid;
+  }
+
+  /* Forzar salto de página antes de secciones principales (opcional) */
+  .page-break-before {
+    page-break-before: always;
+  }
+
+  /* ========================================
+     HEADER Y FOOTER DE IMPRESIÓN
+     ======================================== */
+
+  @page {
+    margin: 2cm;
+    size: A4;
+  }
+
+  /* Header de la página impresa */
+  @page :first {
+    margin-top: 3cm;
+  }
+
+  /* Footer con número de página */
+  @page {
+    @bottom-right {
+      content: "Página " counter(page) " de " counter(pages);
+      font-size: 9pt;
+      color: #666;
+    }
+  }
+
+  /* ========================================
+     OPTIMIZACIONES ADICIONALES
+     ======================================== */
+
+  /* Forzar modo blanco y negro */
+  * {
+    -webkit-print-color-adjust: economy !important;
+    print-color-adjust: economy !important;
+  }
+
+  /* Optimizar fuentes para impresión */
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Eliminar transformaciones y transiciones */
+  * {
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/**
+ * USAGE:
+ *
+ * 1. Importar en gatsby-browser.js:
+ *    import './src/styles/print.css'
+ *
+ * 2. Para forzar saltos de página, agregar clase:
+ *    <div className="page-break-before">Nueva sección</div>
+ *
+ * 3. Para probar:
+ *    - Ctrl+P / Cmd+P en el navegador
+ *    - O usar la vista previa de impresión
+ */

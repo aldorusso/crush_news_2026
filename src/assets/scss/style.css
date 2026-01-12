@@ -1,0 +1,138 @@
+/* @tailwind base;
+@tailwind components; */
+.btn {
+  @apply px-4 py-2 bg-gray-300 text-white rounded;
+}
+body {
+  @apply font-noto;
+}
+.block-hover {
+  opacity: 1;
+  transition: all 300ms ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(rgba(18, 18, 19, 0)),
+    to(#121213)
+  );
+  background: -webkit-linear-gradient(
+    top,
+    rgba(18, 18, 19, 0) 0%,
+    #121213 100%
+  );
+  background: -o-linear-gradient(top, rgba(18, 18, 19, 0) 0%, #121213 100%);
+  background: linear-gradient(180deg, rgba(18, 18, 19, 0) 0%, #121213 100%);
+  border-radius: 8px;
+}
+.main-title::before {
+  position: absolute;
+  content: "";
+  right: -177px;
+  left: 0;
+  width: 60px;
+  height: 5px;
+  background: #ffb9b9;
+  top: 16px;
+  z-index: -1;
+}
+.swiper-grid-column > .swiper-wrapper {
+  flex-direction: inherit;
+}
+iframe {
+  overflow: hidden;
+  border: none;
+  width: 100%;
+}
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  font-size: 10px;
+  background: red;
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  border-radius: 6px;
+  color: #fff;
+  font-weight: 600;
+}
+.swiper-button-next:hover:after,
+.swiper-button-prev:hover:after {
+  background-color: #000;
+}
+.swiper-button-next {
+  top: 18px;
+}
+.swiper-button-prev {
+  top: 18px;
+  right: 39px;
+  left: auto;
+}
+.main-slider .swiper-button-next {
+  top: 50%;
+}
+.main-slider .swiper-button-prev {
+  top: 50%;
+  right: auto;
+  left: 10px;
+}
+.main-slider .swiper-button-next:after,
+.main-slider .swiper-button-prev:after {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+}
+@media (min-width: 768px) AND (max-width: 991px) {
+  #menu {
+    justify-content: center;
+    margin-top: 24px;
+  }
+}
+@media (min-width: 992px) {
+  #menu {
+    position: unset;
+  }
+}
+@media (max-width: 991px) {
+  .main-title::before {
+    display: none;
+  }
+}
+/*dark mode*/
+.dark .main-title::before {
+  background: #ff3750;
+}
+.dark .swiper-button-next:hover:after,
+.dark .swiper-button-prev:hover:after {
+  background-color: #1f2937;
+}
+/*dark mode end*/
+/* rtl*/
+[dir="rtl"] .main-title::before {
+  position: absolute;
+  content: "";
+  left: -177px;
+  right: 0;
+  width: 60px;
+  height: 5px;
+  top: 16px;
+  z-index: -1;
+}
+[dir="rtl"] .swiper-button-next {
+  left: 39px;
+  right: auto;
+}
+[dir="rtl"] .swiper-button-prev {
+  right: auto;
+  left: 0;
+}
+[dir="rtl"] .swiper-slide {
+  direction: rtl;
+}
+/* rtl end*/
+@tailwind utilities;
