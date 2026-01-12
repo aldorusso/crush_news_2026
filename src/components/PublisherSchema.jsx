@@ -23,7 +23,6 @@ const PublisherSchema = ({
   ],
   contactPoint = {
     "@type": "ContactPoint",
-    telephone: "+1-XXX-XXX-XXXX", // Actualizar con teléfono real
     contactType: "customer service",
     email: "contacto@crush.news",
     availableLanguage: ["Spanish", "English"],

@@ -33,7 +33,6 @@ const WebSiteSchema = ({
   publisher = {
     name: "crush.news",
     email: "contacto@crush.news",
-    telephone: "+1-XXX-XXX-XXXX",
   },
 }) => {
   const schema = {
@@ -85,7 +84,6 @@ const WebSiteSchema = ({
             "@type": "ContactPoint",
             contactType: "customer service",
             email: publisher.email,
-            telephone: publisher.telephone,
             availableLanguage: ["Spanish", "English"],
           },
         ],

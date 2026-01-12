@@ -2,7 +2,6 @@ import React from "react"
 import { Link } from "gatsby"
 
 // PostList Component - Categories sidebar
-// TODO: Add your own categories here
 
 const PostList = () => {
   // Example category structure:
