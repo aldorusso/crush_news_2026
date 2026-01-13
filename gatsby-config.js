@@ -58,49 +58,10 @@ module.exports = {
         crossOrigin: `use-credentials`,
       },
     },
-    // Sitemap para SEO (MEJORADO con prioridades dinámicas y lastmod)
+    // Sitemap para SEO
     {
       resolve: `gatsby-plugin-sitemap`,
       options: {
-        output: `/`,
-        query: `
-          {
-            site {
-              siteMetadata {
-                siteUrl
-              }
-            }
-            allSitePage {
-              nodes {
-                path
-              }
-            }
-          }
-        `,
-        resolveSiteUrl: () => `https://crush.news`,
-        serialize: ({ path }) => {
-          const {
-            calculatePriority,
-            calculateChangefreq,
-            getLastModified,
-            shouldIncludeInSitemap,
-          } = require('./src/utils/sitemapConfig')
-
-          // Filtrar páginas que no deben estar en el sitemap
-          if (!shouldIncludeInSitemap(path)) {
-            return null
-          }
-
-          return {
-            url: path,
-            changefreq: calculateChangefreq(path),
-            priority: calculatePriority(path),
-            lastmod: getLastModified(path),
-          }
-        },
-        // Crear link en <head>
-        createLinkInHead: true,
-        // Excluir páginas específicas
         excludes: ['/dev-404-page/', '/404/', '/404.html', '/admin/*', '/draft/*'],
       },
     },
