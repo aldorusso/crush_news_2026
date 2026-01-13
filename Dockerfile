@@ -1,9 +1,12 @@
 # ===========================================
-# CRUSH NEWS - Dockerfile para Desarrollo
+# CRUSH NEWS - Dockerfile
 # ===========================================
-# Multi-stage build para optimizar tamaño
+# Por defecto construye para PRODUCCIÓN
+# Para desarrollo usar: docker build --target development
 
-# Stage 1: Build
+# ===========================================
+# Stage 1: Dependencies & Build
+# ===========================================
 FROM node:20-alpine AS builder
 
 # Instalar dependencias del sistema necesarias para node-canvas y sharp
@@ -38,30 +41,12 @@ COPY . .
 # Build de Gatsby
 RUN npm run build
 
-# Stage 2: Production con Nginx
-FROM nginx:alpine AS production
-
-# Copiar configuración personalizada de nginx
-COPY nginx.conf /etc/nginx/nginx.conf
-
-# Copiar los archivos estáticos generados por Gatsby
-COPY --from=builder /app/public /usr/share/nginx/html
-
-# Exponer puerto 80
-EXPOSE 80
-
-# Healthcheck
-HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-    CMD wget --quiet --tries=1 --spider http://localhost/ || exit 1
-
-CMD ["nginx", "-g", "daemon off;"]
-
 # ===========================================
-# Stage alternativo: Development con hot-reload
+# Stage 2: Development (opcional)
+# Usar con: docker build --target development
 # ===========================================
 FROM node:20-alpine AS development
 
-# Instalar dependencias del sistema
 RUN apk add --no-cache \
     python3 \
     py3-pip \
@@ -78,20 +63,34 @@ RUN apk add --no-cache \
 
 WORKDIR /app
 
-# Copiar archivos de dependencias
 COPY package.json package-lock.json* ./
 
-# Instalar dependencias (ignorar canvas si falla)
 RUN npm ci --legacy-peer-deps --ignore-scripts || npm ci --legacy-peer-deps --omit=optional
-
-# Rebuild native modules
 RUN npm rebuild || true
 
-# El código se monta como volumen en desarrollo
-# COPY . .
+COPY . .
 
-# Exponer puerto de desarrollo de Gatsby
 EXPOSE 8000
 
-# Comando para desarrollo con hot-reload
 CMD ["npm", "run", "develop", "--", "-H", "0.0.0.0"]
+
+# ===========================================
+# Stage 3: Production (DEFAULT)
+# Nginx sirviendo archivos estáticos
+# ===========================================
+FROM nginx:alpine AS production
+
+# Copiar configuración personalizada de nginx
+COPY nginx.conf /etc/nginx/nginx.conf
+
+# Copiar los archivos estáticos generados por Gatsby
+COPY --from=builder /app/public /usr/share/nginx/html
+
+# Exponer puerto 80
+EXPOSE 80
+
+# Healthcheck
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+    CMD wget --quiet --tries=1 --spider http://localhost/ || exit 1
+
+CMD ["nginx", "-g", "daemon off;"]
