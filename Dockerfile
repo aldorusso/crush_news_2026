@@ -7,71 +7,67 @@
 # ===========================================
 # Stage 1: Dependencies & Build
 # ===========================================
-FROM node:20-alpine AS builder
+FROM node:20-slim AS builder
 
-# Instalar dependencias del sistema necesarias para node-canvas y sharp
-RUN apk add --no-cache \
+# Instalar dependencias del sistema necesarias
+RUN apt-get update && apt-get install -y \
     python3 \
-    py3-pip \
-    py3-setuptools \
-    make \
-    g++ \
-    cairo-dev \
-    pango-dev \
-    jpeg-dev \
-    giflib-dev \
-    librsvg-dev \
-    pixman-dev \
-    pkgconfig
+    build-essential \
+    libcairo2-dev \
+    libpango1.0-dev \
+    libjpeg-dev \
+    libgif-dev \
+    librsvg2-dev \
+    pkg-config \
+    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
 # Copiar archivos de dependencias primero (mejor cache)
 COPY package.json package-lock.json* ./
 
-# Instalar dependencias (ignorar canvas si falla, es opcional)
-RUN npm ci --legacy-peer-deps --ignore-scripts || npm ci --legacy-peer-deps --omit=optional
-
-# Rebuild native modules
-RUN npm rebuild || true
+# Instalar dependencias
+RUN npm ci --legacy-peer-deps
 
 # Copiar el resto del código
 COPY . .
 
+# Limpiar cache de Gatsby si existe
+RUN rm -rf .cache public
+
 # Build de Gatsby
+ENV NODE_ENV=production
+ENV GATSBY_TELEMETRY_DISABLED=1
 RUN npm run build
 
 # ===========================================
 # Stage 2: Development (opcional)
 # Usar con: docker build --target development
 # ===========================================
-FROM node:20-alpine AS development
+FROM node:20-slim AS development
 
-RUN apk add --no-cache \
+RUN apt-get update && apt-get install -y \
     python3 \
-    py3-pip \
-    py3-setuptools \
-    make \
-    g++ \
-    cairo-dev \
-    pango-dev \
-    jpeg-dev \
-    giflib-dev \
-    librsvg-dev \
-    pixman-dev \
-    pkgconfig
+    build-essential \
+    libcairo2-dev \
+    libpango1.0-dev \
+    libjpeg-dev \
+    libgif-dev \
+    librsvg2-dev \
+    pkg-config \
+    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
 COPY package.json package-lock.json* ./
 
-RUN npm ci --legacy-peer-deps --ignore-scripts || npm ci --legacy-peer-deps --omit=optional
-RUN npm rebuild || true
+RUN npm ci --legacy-peer-deps
 
 COPY . .
 
 EXPOSE 8000
 
+ENV GATSBY_TELEMETRY_DISABLED=1
 CMD ["npm", "run", "develop", "--", "-H", "0.0.0.0"]
 
 # ===========================================
