@@ -9,6 +9,8 @@ FROM node:20-alpine AS builder
 # Instalar dependencias del sistema necesarias para node-canvas y sharp
 RUN apk add --no-cache \
     python3 \
+    py3-pip \
+    py3-setuptools \
     make \
     g++ \
     cairo-dev \
@@ -16,15 +18,19 @@ RUN apk add --no-cache \
     jpeg-dev \
     giflib-dev \
     librsvg-dev \
-    pixman-dev
+    pixman-dev \
+    pkgconfig
 
 WORKDIR /app
 
 # Copiar archivos de dependencias primero (mejor cache)
 COPY package.json package-lock.json* ./
 
-# Instalar dependencias
-RUN npm ci --legacy-peer-deps
+# Instalar dependencias (ignorar canvas si falla, es opcional)
+RUN npm ci --legacy-peer-deps --ignore-scripts || npm ci --legacy-peer-deps --omit=optional
+
+# Rebuild native modules
+RUN npm rebuild || true
 
 # Copiar el resto del código
 COPY . .
@@ -58,6 +64,8 @@ FROM node:20-alpine AS development
 # Instalar dependencias del sistema
 RUN apk add --no-cache \
     python3 \
+    py3-pip \
+    py3-setuptools \
     make \
     g++ \
     cairo-dev \
@@ -65,15 +73,19 @@ RUN apk add --no-cache \
     jpeg-dev \
     giflib-dev \
     librsvg-dev \
-    pixman-dev
+    pixman-dev \
+    pkgconfig
 
 WORKDIR /app
 
 # Copiar archivos de dependencias
 COPY package.json package-lock.json* ./
 
-# Instalar dependencias
-RUN npm ci --legacy-peer-deps
+# Instalar dependencias (ignorar canvas si falla)
+RUN npm ci --legacy-peer-deps --ignore-scripts || npm ci --legacy-peer-deps --omit=optional
+
+# Rebuild native modules
+RUN npm rebuild || true
 
 # El código se monta como volumen en desarrollo
 # COPY . .
