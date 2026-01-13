@@ -1,0 +1,80 @@
+# ===========================================
+# CRUSH NEWS - Docker Compose
+# ===========================================
+# Uso:
+#   Desarrollo: docker-compose up dev
+#   Producción: docker-compose up prod
+#   Build:      docker-compose build prod
+# ===========================================
+
+version: '3.8'
+
+services:
+  # ===========================================
+  # DESARROLLO - Con hot-reload
+  # ===========================================
+  dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    container_name: crush-news-dev
+    ports:
+      - "8000:8000"
+    volumes:
+      # Montar código fuente para hot-reload
+      - .:/app
+      # Excluir node_modules del volumen (usar los del container)
+      - /app/node_modules
+      # Cache de Gatsby
+      - gatsby_cache:/app/.cache
+      - gatsby_public:/app/public
+    environment:
+      - NODE_ENV=development
+      - GATSBY_TELEMETRY_DISABLED=1
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
+
+  # ===========================================
+  # PRODUCCIÓN - Build estático con Nginx
+  # ===========================================
+  prod:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    container_name: crush-news-prod
+    ports:
+      - "80:80"
+    environment:
+      - NODE_ENV=production
+    restart: always
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # ===========================================
+  # STAGING - Para pruebas pre-producción
+  # ===========================================
+  staging:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    container_name: crush-news-staging
+    ports:
+      - "8080:80"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+
+# Volúmenes persistentes
+volumes:
+  gatsby_cache:
+    name: crush-news-gatsby-cache
+  gatsby_public:
+    name: crush-news-gatsby-public
