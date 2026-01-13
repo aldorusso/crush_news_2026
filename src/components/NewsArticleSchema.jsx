@@ -113,9 +113,11 @@ const NewsArticleSchema = ({
     url: "https://crush.news",
     logo: publisherLogoUrl,
     sameAs: [
-      "https://www.facebook.com/crushnews",
-      "https://twitter.com/crushnews",
-      "https://www.instagram.com/crushnews",
+      "https://www.facebook.com/crushnewsES/",
+      "https://x.com/crushnews_es",
+      "https://www.instagram.com/crushnews_es/",
+      "https://www.youtube.com/@crushnews_es",
+      "https://www.tiktok.com/@crushnews_es",
     ],
   }
 

@@ -1,8 +1,6 @@
 import { Link } from "gatsby"
 import React, { useEffect, useRef, useState } from "react"
 import Announcement2 from "../announcements/Announcement2"
-import logof from "../../assets/images/placeholder"
-import logo from "../../assets/images/placeholder"
 import HelmetStructure from "../HelmetStructure"
 import ThemeCustomizer from "../ThemeCustomizer"
 const Header2 = () => {

@@ -17,6 +17,7 @@ const ContactForm = ({ onSubmit, className = "" }) => {
     email: "",
     subject: "",
     message: "",
+    privacyConsent: false,
   })
 
   const [errors, setErrors] = useState({})
@@ -81,6 +82,12 @@ const ContactForm = ({ onSubmit, className = "" }) => {
         }
         return ""
 
+      case "privacyConsent":
+        if (!value) {
+          return "Debes aceptar la política de privacidad para enviar el formulario"
+        }
+        return ""
+
       default:
         return ""
     }
@@ -100,22 +107,24 @@ const ContactForm = ({ onSubmit, className = "" }) => {
 
   // Manejar cambios en los campos
   const handleChange = (e) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
+    const { name, value, type, checked } = e.target
+    const fieldValue = type === "checkbox" ? checked : value
+    setFormData((prev) => ({ ...prev, [name]: fieldValue }))
 
     // Validar en tiempo real si el campo ya fue tocado
     if (touched[name]) {
-      const error = validateField(name, value)
+      const error = validateField(name, fieldValue)
       setErrors((prev) => ({ ...prev, [name]: error }))
     }
   }
 
   // Manejar blur (cuando el usuario sale del campo)
   const handleBlur = (e) => {
-    const { name, value } = e.target
+    const { name, value, type, checked } = e.target
+    const fieldValue = type === "checkbox" ? checked : value
     setTouched((prev) => ({ ...prev, [name]: true }))
 
-    const error = validateField(name, value)
+    const error = validateField(name, fieldValue)
     setErrors((prev) => ({ ...prev, [name]: error }))
   }
 
@@ -156,7 +165,7 @@ const ContactForm = ({ onSubmit, className = "" }) => {
 
       setSubmitStatus("success")
       // Resetear formulario
-      setFormData({ name: "", email: "", subject: "", message: "" })
+      setFormData({ name: "", email: "", subject: "", message: "", privacyConsent: false })
       setTouched({})
       setErrors({})
     } catch (error) {
@@ -373,6 +382,69 @@ const ContactForm = ({ onSubmit, className = "" }) => {
           </p>
         </div>
 
+        {/* Consentimiento de Privacidad (GDPR/LOPD) */}
+        <div className="mt-6">
+          <div className="flex items-start gap-3">
+            <div className="flex items-center h-5 mt-0.5">
+              <input
+                type="checkbox"
+                id="privacyConsent"
+                name="privacyConsent"
+                checked={formData.privacyConsent}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                required
+                aria-required="true"
+                aria-invalid={errors.privacyConsent ? "true" : "false"}
+                aria-describedby={errors.privacyConsent ? "privacy-error" : "privacy-description"}
+                className={`w-4 h-4 rounded border focus:ring-2 focus:ring-[#ff3750] ${
+                  errors.privacyConsent && touched.privacyConsent
+                    ? "border-red-500"
+                    : "border-gray-300 dark:border-gray-600"
+                } bg-gray-50 dark:bg-gray-700`}
+              />
+            </div>
+            <div>
+              <label
+                htmlFor="privacyConsent"
+                className="text-sm text-gray-700 dark:text-gray-300"
+              >
+                <span className="text-red-500" aria-label="requerido">*</span>{" "}
+                He leído y acepto la{" "}
+                <a
+                  href="/privacy-policy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#ff3750] hover:underline font-medium"
+                >
+                  Política de Privacidad
+                </a>{" "}
+                y consiento el tratamiento de mis datos personales para gestionar mi consulta.
+              </label>
+              <p
+                id="privacy-description"
+                className="mt-1 text-xs text-gray-500 dark:text-gray-400"
+              >
+                Tus datos serán tratados conforme al RGPD y la LOPD-GDD. Puedes ejercer tus derechos
+                de acceso, rectificación, supresión y portabilidad en{" "}
+                <a href="mailto:contacto@crush.news" className="text-[#ff3750] hover:underline">
+                  contacto@crush.news
+                </a>
+              </p>
+            </div>
+          </div>
+          {errors.privacyConsent && touched.privacyConsent && (
+            <p
+              id="privacy-error"
+              className="mt-2 text-sm text-red-600 dark:text-red-400"
+              role="alert"
+            >
+              <i className="ri-error-warning-line mr-1"></i>
+              {errors.privacyConsent}
+            </p>
+          )}
+        </div>
+
         {/* Submit Button */}
         <button
           type="submit"
@@ -397,15 +469,6 @@ const ContactForm = ({ onSubmit, className = "" }) => {
           )}
         </button>
 
-        {/* Nota de privacidad */}
-        <p className="mt-4 text-xs text-gray-500 dark:text-gray-400">
-          <i className="ri-lock-line mr-1"></i>
-          Tu información está protegida. Lee nuestra{" "}
-          <a href="/privacy-policy" className="text-[#ff3750] hover:underline">
-            Política de Privacidad
-          </a>
-          .
-        </p>
       </form>
     </div>
   )

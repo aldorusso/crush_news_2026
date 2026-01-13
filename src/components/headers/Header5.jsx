@@ -302,22 +302,6 @@ const Header5 = () => {
                       </li>
                     </ul>
                   </li>
-                  <li>
-                    <Link
-                      className="px-0 py-2 md:px-2 lg:px-4 block hover:text-[#ff3750]"
-                      to="/about"
-                    >
-                      About
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      className="px-0 py-2 md:px-2 lg:px-4 block hover:text-[#ff3750]"
-                      to="/contact"
-                    >
-                      Contact
-                    </Link>
-                  </li>
                 </ul>
               </div>
             </nav>
@@ -377,23 +361,16 @@ const Header5 = () => {
                             Buscar
                           </button>
                         </div>
-                        <span
+                        <button
+                          type="button"
                           className="cursor-pointer text-black font-bold dark:text-gray-300 hover:text-[#ff3750] text-xl absolute top-4 right-4"
                           onClick={() => setSearchOpen(false)}
                         >
                           ✕
-                        </span>
+                        </button>
                       </form>
                     </div>
                   </div>
-                </li>
-                <li className="text-md">
-                  <Link
-                    to="/login"
-                    className="capitalize transition-all hover:bg-[#ff3750] btn leading-6 text-sm px-6 bg-black rounded-full text-white dark:bg-[#ff3750] dark:hover:bg-gray-700"
-                  >
-                    iniciar sesión
-                  </Link>
                 </li>
               </ul>
             </div>

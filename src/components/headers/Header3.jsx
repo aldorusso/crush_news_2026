@@ -3,8 +3,6 @@ import { Link } from "gatsby"
 import HelmetStructure from "../HelmetStructure"
 import ThemeCustomizer from "../ThemeCustomizer"
 import Announcement3 from "../announcements/Announcement3"
-import logof from "../../assets/images/placeholder"
-import logo from "../../assets/images/placeholder"
 const Header3 = () => {
   const [menuOpen, setMenuOpen] = useState(false)
 
@@ -583,16 +581,7 @@ const Header3 = () => {
 
             {/* search */}
             <div className="flex items-center order-3">
-              <div className="text-md">
-                <Link
-                  to="/login"
-                  className="capitalize transition-all hover:text-[#E32C26] text-base dark:text-slate-200 dark:hover:text-[#478cff] flex items-center"
-                >
-                  <i className="ri-user-line"></i>{" "}
-                  <span className="hidden lg:block ms-1">iniciar sesión</span>
-                </Link>{" "}
-              </div>
-              <form className="max-w-md mx-auto ms-1">
+              <form className="max-w-md mx-auto">
                 <label
                   htmlFor="default-search"
                   className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"

@@ -1,7 +1,5 @@
 import { Link } from "gatsby"
 import React, { useEffect, useRef, useState } from "react"
-import flogo from "../../assets/images/placeholder"
-import logo from "../../assets/images/placeholder"
 import HelmetStructure from "../HelmetStructure"
 import ThemeCustomizer from "../ThemeCustomizer"
 import Announcement from "../announcements/Announcement"
@@ -378,15 +376,6 @@ const Header = () => {
                       </form>
                     </div>
                   </div>
-                </li>
-                <li className="text-md">
-                  <Link
-                    to="/acceder"
-                    className="capitalize transition-all hover:text-[#062DB9] text-base dark:text-slate-200 dark:hover:text-[#478cff] flex items-center"
-                  >
-                    <i className="ri-user-line"></i>{" "}
-                    <span className="hidden lg:block ms-1">acceder</span>
-                  </Link>{" "}
                 </li>
               </ul>
             </div>

@@ -24,10 +24,11 @@ const WebSiteSchema = ({
   searchUrl = "https://crush.news/search?q={search_term_string}",
   // Social media profiles
   sameAs = [
-    "https://twitter.com/crushnews",
-    "https://facebook.com/crushnews",
-    "https://instagram.com/crushnews",
-    "https://tiktok.com/@crushnews",
+    "https://x.com/crushnews_es",
+    "https://www.facebook.com/crushnewsES/",
+    "https://www.instagram.com/crushnews_es/",
+    "https://www.youtube.com/@crushnews_es",
+    "https://www.tiktok.com/@crushnews_es",
   ],
   // Publisher information
   publisher = {

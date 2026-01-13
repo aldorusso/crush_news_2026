@@ -224,43 +224,51 @@ const Footer5 = () => {
                 crush.news
               </Link>
             </div>
-            <form className="col-span-2 flex">
-              <input
-                type="email"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white pl-4 pr-8 rtl:pe-8 rtl:pr-4 capitalize"
-                placeholder="Ingresa tu email"
-                required
-              />
-              <button className="btn rounded-lg px-3 lg:px-6 py-3 relative -left-5 md:-left-5 rtl:-right-5 rtl:md:-left-5 bg-[#ff3750] hover:bg-gray-900 dark:hover:bg-gray-700 capitalize">
-                Suscribirse
-              </button>
-            </form>
+            <div className="col-span-2">
+              <form className="flex">
+                <input
+                  type="email"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white pl-4 pr-8 rtl:pe-8 rtl:pr-4 capitalize"
+                  placeholder="Ingresa tu email"
+                  required
+                />
+                <button className="btn rounded-lg px-3 lg:px-6 py-3 relative -left-5 md:-left-5 rtl:-right-5 rtl:md:-left-5 bg-[#ff3750] hover:bg-gray-900 dark:hover:bg-gray-700 capitalize">
+                  Suscribirse
+                </button>
+              </form>
+              <p className="text-xs text-gray-400 mt-2">
+                Al suscribirte aceptas nuestra{" "}
+                <Link to="/privacy-policy" className="text-[#ff3750] hover:underline">
+                  Política de Privacidad
+                </Link>
+              </p>
+            </div>
             <div className="col-span-1">
               <ul className="flex space-x-4 md:space-x-0 gap-2 rtl:space-x-reverse md:float-right flex-wrap">
                 <li className="text-base text-black bg-white w-8 h-8 text-center rounded hover:bg-[#ff3750] hover:text-white leading-8">
-                  <Link to="#">
+                  <a href="https://www.facebook.com/crushnewsES/" target="_blank" rel="noopener noreferrer">
                     <i className="ri-facebook-fill"></i>
-                  </Link>
+                  </a>
                 </li>
                 <li className="text-base text-black bg-white w-8 h-8 text-center rounded hover:bg-[#ff3750] hover:text-white leading-8">
-                  <Link to="#">
+                  <a href="https://x.com/crushnews_es" target="_blank" rel="noopener noreferrer">
                     <i className="ri-twitter-x-fill"></i>
-                  </Link>
+                  </a>
                 </li>
                 <li className="text-base text-black bg-white w-8 h-8 text-center rounded hover:bg-[#ff3750] hover:text-white leading-8">
-                  <Link to="#">
-                    <i className="ri-linkedin-fill"></i>
-                  </Link>
+                  <a href="https://www.instagram.com/crushnews_es/" target="_blank" rel="noopener noreferrer">
+                    <i className="ri-instagram-fill"></i>
+                  </a>
                 </li>
                 <li className="text-base text-black bg-white w-8 h-8 text-center rounded hover:bg-[#ff3750] hover:text-white leading-8">
-                  <Link to="#">
-                    <i className="ri-rss-fill"></i>
-                  </Link>
+                  <a href="https://www.tiktok.com/@crushnews_es" target="_blank" rel="noopener noreferrer">
+                    <i className="ri-tiktok-fill"></i>
+                  </a>
                 </li>
                 <li className="text-base text-black bg-white w-8 h-8 text-center rounded hover:bg-[#ff3750] hover:text-white leading-8">
-                  <Link to="#">
+                  <a href="https://www.youtube.com/@crushnews_es" target="_blank" rel="noopener noreferrer">
                     <i className="ri-youtube-fill"></i>
-                  </Link>
+                  </a>
                 </li>
               </ul>
             </div>

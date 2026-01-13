@@ -47,7 +47,7 @@ const Contact = () => {
             {/* Contact Options */}
             <div className="grid grid-cols-3 gap-3 sm:gap-4 mb-6 sm:mb-8">
               <a
-                href="https://twitter.com/crushnews"
+                href="https://x.com/crushnews_es"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-white dark:bg-gray-800 rounded-xl p-4 sm:p-6 text-center hover:shadow-lg transition-shadow group"
@@ -60,7 +60,7 @@ const Contact = () => {
               </a>
 
               <a
-                href="https://instagram.com/crush.news"
+                href="https://www.instagram.com/crushnews_es/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-white dark:bg-gray-800 rounded-xl p-4 sm:p-6 text-center hover:shadow-lg transition-shadow group"
@@ -69,11 +69,11 @@ const Contact = () => {
                   <i className="ri-instagram-fill text-lg sm:text-2xl"></i>
                 </div>
                 <h3 className="font-semibold dark:text-white mb-0.5 sm:mb-1 text-xs sm:text-base">Instagram</h3>
-                <p className="text-[10px] sm:text-sm text-gray-500 dark:text-gray-400">@crush.news</p>
+                <p className="text-[10px] sm:text-sm text-gray-500 dark:text-gray-400">@crushnews_es</p>
               </a>
 
               <a
-                href="https://tiktok.com/@crush.news"
+                href="https://www.tiktok.com/@crushnews_es"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-white dark:bg-gray-800 rounded-xl p-4 sm:p-6 text-center hover:shadow-lg transition-shadow group"
@@ -82,7 +82,7 @@ const Contact = () => {
                   <i className="ri-tiktok-fill text-lg sm:text-2xl"></i>
                 </div>
                 <h3 className="font-semibold dark:text-white mb-0.5 sm:mb-1 text-xs sm:text-base">TikTok</h3>
-                <p className="text-[10px] sm:text-sm text-gray-500 dark:text-gray-400">@crush.news</p>
+                <p className="text-[10px] sm:text-sm text-gray-500 dark:text-gray-400">@crushnews_es</p>
               </a>
             </div>
 
@@ -156,9 +156,18 @@ const Contact = () => {
               <h3 className="font-bold text-base sm:text-lg dark:text-white mb-3 sm:mb-4">
                 Síguenos
               </h3>
-              <div className="grid grid-cols-6 lg:grid-cols-3 gap-2 sm:gap-3">
+              <div className="grid grid-cols-5 lg:grid-cols-5 gap-2 sm:gap-3">
                 <a
-                  href="https://twitter.com/crushnews"
+                  href="https://www.facebook.com/crushnewsES/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-[#3b579d] text-white text-center rounded-lg sm:rounded-xl py-2.5 sm:py-4 hover:opacity-90 transition-opacity"
+                  aria-label="Facebook"
+                >
+                  <i className="ri-facebook-fill text-base sm:text-xl"></i>
+                </a>
+                <a
+                  href="https://x.com/crushnews_es"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-[#1DA1F2] text-white text-center rounded-lg sm:rounded-xl py-2.5 sm:py-4 hover:opacity-90 transition-opacity"
@@ -167,7 +176,7 @@ const Contact = () => {
                   <i className="ri-twitter-x-fill text-base sm:text-xl"></i>
                 </a>
                 <a
-                  href="https://instagram.com/crush.news"
+                  href="https://www.instagram.com/crushnews_es/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-gradient-to-br from-[#833ab4] via-[#fd1d1d] to-[#fcb045] text-white text-center rounded-lg sm:rounded-xl py-2.5 sm:py-4 hover:opacity-90 transition-opacity"
@@ -176,16 +185,7 @@ const Contact = () => {
                   <i className="ri-instagram-fill text-base sm:text-xl"></i>
                 </a>
                 <a
-                  href="https://tiktok.com/@crush.news"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-black text-white text-center rounded-lg sm:rounded-xl py-2.5 sm:py-4 hover:opacity-90 transition-opacity"
-                  aria-label="TikTok"
-                >
-                  <i className="ri-tiktok-fill text-base sm:text-xl"></i>
-                </a>
-                <a
-                  href="https://youtube.com/@crushnews"
+                  href="https://www.youtube.com/@crushnews_es"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-[#FF0000] text-white text-center rounded-lg sm:rounded-xl py-2.5 sm:py-4 hover:opacity-90 transition-opacity"
@@ -194,22 +194,13 @@ const Contact = () => {
                   <i className="ri-youtube-fill text-base sm:text-xl"></i>
                 </a>
                 <a
-                  href="https://discord.gg/crushnews"
+                  href="https://www.tiktok.com/@crushnews_es"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-[#5865F2] text-white text-center rounded-lg sm:rounded-xl py-2.5 sm:py-4 hover:opacity-90 transition-opacity"
-                  aria-label="Discord"
+                  className="bg-black text-white text-center rounded-lg sm:rounded-xl py-2.5 sm:py-4 hover:opacity-90 transition-opacity"
+                  aria-label="TikTok"
                 >
-                  <i className="ri-discord-fill text-base sm:text-xl"></i>
-                </a>
-                <a
-                  href="https://reddit.com/r/crushnews"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-[#FF4500] text-white text-center rounded-lg sm:rounded-xl py-2.5 sm:py-4 hover:opacity-90 transition-opacity"
-                  aria-label="Reddit"
-                >
-                  <i className="ri-reddit-fill text-base sm:text-xl"></i>
+                  <i className="ri-tiktok-fill text-base sm:text-xl"></i>
                 </a>
               </div>
             </div>

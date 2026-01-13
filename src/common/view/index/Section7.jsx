@@ -71,56 +71,69 @@ const Section7 = () => {
                 </div>
                 <ul>
                   <li>
-                    <Link to="#" target="_blank">
-                      <div className="bg-[#062DB9] hover:bg-[#052494] text-white text-left rounded-full py-3.5 px-7 mb-3">
+                    <a href="https://www.facebook.com/crushnewsES/" target="_blank" rel="noopener noreferrer">
+                      <div className="bg-[#3b579d] hover:bg-[#314881] text-white text-left rounded-full py-3.5 px-7 mb-3">
                         <div className="flex items-center justify-between">
                           <div>
                             <i className="text-lg ri-facebook-circle-fill"></i>
-                            <span className="">Facebook</span>
+                            <span className="ml-2">Facebook</span>
                           </div>
-                          <div>0</div>
+                          <i className="ri-external-link-line text-sm opacity-60"></i>
                         </div>
                       </div>
-                    </Link>
+                    </a>
                   </li>
                   <li>
-                    <Link to="#" target="_blank">
+                    <a href="https://x.com/crushnews_es" target="_blank" rel="noopener noreferrer">
                       <div className="bg-[#20A1EB] hover:bg-[#128cd3] text-white text-left rounded-full py-3.5 px-7 mb-3">
                         <div className="flex items-center justify-between">
                           <div>
                             <i className="ri-twitter-x-line"></i>
-                            <span className="">Twitter</span>
+                            <span className="ml-2">Twitter/X</span>
                           </div>
-                          <div>0</div>
+                          <i className="ri-external-link-line text-sm opacity-60"></i>
                         </div>
                       </div>
-                    </Link>
+                    </a>
                   </li>
                   <li>
-                    <Link to="#" target="_blank">
+                    <a href="https://www.instagram.com/crushnews_es/" target="_blank" rel="noopener noreferrer">
+                      <div className="bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045] hover:opacity-90 text-white text-left rounded-full py-3.5 px-7 mb-3">
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <i className="ri-instagram-fill"></i>
+                            <span className="ml-2">Instagram</span>
+                          </div>
+                          <i className="ri-external-link-line text-sm opacity-60"></i>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://www.youtube.com/@crushnews_es" target="_blank" rel="noopener noreferrer">
                       <div className="bg-[#ff0000] hover:bg-[#d40000] text-white text-left rounded-full py-3.5 px-7 mb-3">
                         <div className="flex items-center justify-between">
                           <div>
                             <i className="ri-youtube-fill"></i>
-                            <span className="">YouTube</span>
+                            <span className="ml-2">YouTube</span>
                           </div>
-                          <div>0</div>
+                          <i className="ri-external-link-line text-sm opacity-60"></i>
                         </div>
                       </div>
-                    </Link>
+                    </a>
                   </li>
                   <li>
-                    <Link to="#" target="_blank">
-                      <div className="bg-[#E1306C] hover:bg-[#c92859] text-white text-left rounded-full py-3.5 px-7 mb-3">
+                    <a href="https://www.tiktok.com/@crushnews_es" target="_blank" rel="noopener noreferrer">
+                      <div className="bg-black hover:bg-gray-800 text-white text-left rounded-full py-3.5 px-7 mb-3">
                         <div className="flex items-center justify-between">
                           <div>
-                            <i className="ri-instagram-fill"></i>
-                            <span className="">Instagram</span>
+                            <i className="ri-tiktok-fill"></i>
+                            <span className="ml-2">TikTok</span>
                           </div>
-                          <div>0</div>
+                          <i className="ri-external-link-line text-sm opacity-60"></i>
                         </div>
                       </div>
-                    </Link>
+                    </a>
                   </li>
                 </ul>
               </div>

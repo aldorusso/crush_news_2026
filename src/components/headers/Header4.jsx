@@ -4,8 +4,6 @@ import NavMenu from "../../common/NavMenu"
 import HelmetStructure from "../HelmetStructure"
 import ThemeCustomizer from "../ThemeCustomizer"
 import Announcement4 from "../announcements/Announcement4"
-import flogo from "../../assets/images/placeholder"
-import logo from "../../assets/images/placeholder"
 
 const Header4 = () => {
   return (
@@ -35,16 +33,7 @@ const Header4 = () => {
 
             {/* search */}
             <div className="flex items-center order-3">
-              <div className="text-md">
-                <Link
-                  to="/login"
-                  className="capitalize transition-all hover:text-[#E32C26] text-base dark:text-slate-200 dark:hover:text-[#478cff] flex items-center"
-                >
-                  <i className="text-xl ri-account-circle-line"></i>{" "}
-                  <span className="hidden lg:block ms-1">iniciar sesión</span>
-                </Link>{" "}
-              </div>
-              <form className="max-w-md mx-auto ms-1">
+              <form className="max-w-md mx-auto">
                 <label
                   htmlFor="default-search"
                   className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"

@@ -1,63 +1,53 @@
-import { Link } from "gatsby"
 import React from "react"
 
 const Social2 = () => {
   return (
     <React.Fragment>
       <div className="grid grid-cols-3 gap-2 mb-8">
-        <Link to="#" target="_blank">
+        <a href="https://www.facebook.com/crushnewsES/" target="_blank" rel="noopener noreferrer">
           <div className="bg-[#3b579d] text-white text-center rounded-lg py-4 sm:py-3 sm:px-3 xl:py-6 px-4 xl:px-6 hover:bg-[#314881]">
             <div className="text-2xl">
               <i className="ri-facebook-fill"></i>
             </div>
-            <span className="block md:hidden lg:block">facebook</span>
+            <span className="block md:hidden lg:block">Facebook</span>
           </div>
-        </Link>
+        </a>
 
-        <Link to="#" target="_blank">
+        <a href="https://x.com/crushnews_es" target="_blank" rel="noopener noreferrer">
           <div className="bg-[#2caae1] text-white text-center rounded-lg py-4 sm:py-3 sm:px-3 xl:py-6 px-4 xl:px-6 hover:bg-[#1d95c9]">
             <div className="text-2xl">
               <i className="ri-twitter-x-fill"></i>
             </div>
             <span className="block md:hidden lg:block">Twitter</span>
           </div>
-        </Link>
+        </a>
 
-        <Link to="#" target="_blank">
-          <div className="bg-[#ee4838] text-white text-center rounded-lg py-4 sm:py-3 sm:px-3 xl:py-6 px-4 xl:px-6 hover:bg-[#eb2614]">
+        <a href="https://www.instagram.com/crushnews_es/" target="_blank" rel="noopener noreferrer">
+          <div className="bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045] text-white text-center rounded-lg py-4 sm:py-3 sm:px-3 xl:py-6 px-4 xl:px-6 hover:opacity-90">
             <div className="text-2xl">
-              <i className="ri-linkedin-fill"></i>
+              <i className="ri-instagram-fill"></i>
             </div>
-            <span className="block md:hidden lg:block">Linkedin</span>
+            <span className="block md:hidden lg:block">Instagram</span>
           </div>
-        </Link>
+        </a>
 
-        <Link to="#" target="_blank">
-          <div className="bg-[#ee4838] text-white text-center rounded-lg py-4 sm:py-3 sm:px-3 xl:py-6 px-4 xl:px-6 hover:bg-[#eb2614]">
-            <div className="text-2xl">
-              <i className="ri-rss-fill"></i>
-            </div>
-            <span className="block md:hidden lg:block">RSS</span>
-          </div>
-        </Link>
-
-        <Link to="#" target="_blank">
+        <a href="https://www.youtube.com/@crushnews_es" target="_blank" rel="noopener noreferrer">
           <div className="bg-[#e6291b] text-white text-center rounded-lg py-4 sm:py-3 sm:px-3 xl:py-6 px-4 xl:px-6 hover:bg-[#b81f14]">
             <div className="text-2xl">
               <i className="ri-youtube-fill"></i>
             </div>
             <span className="block md:hidden lg:block">YouTube</span>
           </div>
-        </Link>
+        </a>
 
-        <Link to="#" target="_blank">
-          <div className="bg-[#e13138] text-white text-center rounded-lg py-4 sm:py-3 sm:px-3 xl:py-6 px-4 xl:px-6 hover:bg-[#c91d22]">
+        <a href="https://www.tiktok.com/@crushnews_es" target="_blank" rel="noopener noreferrer" className="col-span-2">
+          <div className="bg-black text-white text-center rounded-lg py-4 sm:py-3 sm:px-3 xl:py-6 px-4 xl:px-6 hover:bg-gray-800">
             <div className="text-2xl">
-              <i className="ri-pinterest-fill"></i>
+              <i className="ri-tiktok-fill"></i>
             </div>
-            <span className="block md:hidden lg:block">Pinterest</span>
+            <span className="block md:hidden lg:block">TikTok</span>
           </div>
-        </Link>
+        </a>
       </div>
     </React.Fragment>
   )

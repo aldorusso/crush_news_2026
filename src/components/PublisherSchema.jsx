@@ -16,10 +16,11 @@ const PublisherSchema = ({
   description = "Tu fuente de noticias, tendencias y cultura para la Generación Z. Mantente informado con las últimas novedades en moda, entretenimiento y estilo de vida.",
   foundingDate = "2024-01-01",
   sameAs = [
-    "https://twitter.com/crushnews",
-    "https://facebook.com/crushnews",
-    "https://instagram.com/crushnews",
-    "https://tiktok.com/@crushnews",
+    "https://x.com/crushnews_es",
+    "https://www.facebook.com/crushnewsES/",
+    "https://www.instagram.com/crushnews_es/",
+    "https://www.youtube.com/@crushnews_es",
+    "https://www.tiktok.com/@crushnews_es",
   ],
   contactPoint = {
     "@type": "ContactPoint",
