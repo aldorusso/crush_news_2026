@@ -195,8 +195,7 @@ const SinglePost = () => {
                     description="Suscríbete para recibir más contenido como este"
                     buttonText="¡Quiero suscribirme!"
                     onSubscribe={async (data) => {
-                      // En producción: enviar a tu servicio de email
-                      console.log("Newsletter subscription:", data)
+                      // TODO: Implementar envío a servicio de email marketing
                     }}
                     className="text-white"
                   />

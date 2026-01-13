@@ -99,7 +99,8 @@ const Contact = () => {
 
               <ContactForm
                 onSubmit={async (data) => {
-                  console.log("Form data:", data)
+                  // TODO: Implementar envío real del formulario
+                  // Por ahora solo mostramos confirmación al usuario
                 }}
               />
             </div>

@@ -31,7 +31,7 @@ const PostFormatVideo = () => {
 
         <div className="container px-4 mx-auto">
           <div className="mb-8">
-            <Link to="/single-post" target="_blank">
+            <Link to="/single-post">
               <img
                 className="w-full h-auto max-w-full mt-8 rounded-lg"
                 src={banner}
