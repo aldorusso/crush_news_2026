@@ -10,7 +10,7 @@ const BlogPosts = ({ postData }) => {
             <div className="lg:mb-8" key={item.id}>
               <div className="block gap-4 lg:flex">
                 <div className="lg:w-1/2">
-                  <Link href="/single-post">
+                  <Link to={item.link || "/"}>
                     <img
                       className="w-full h-auto max-w-full rounded-lg"
                       src={item.image}
@@ -20,7 +20,7 @@ const BlogPosts = ({ postData }) => {
                 </div>
                 <div className="py-4 lg:py-0 lg:w-1/2">
                   <h3 className="text-lg sm:text-xl mb-4 hover:text-[#ff3750] dark:text-white dark:hover:text-[#ff3750]">
-                    <Link href={item.link || "/single-post"}>
+                    <Link to={item.link || "/"}>
                       {item.title || "Título del Artículo"}
                     </Link>
                   </h3>

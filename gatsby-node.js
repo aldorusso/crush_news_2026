@@ -4,33 +4,25 @@
  * See: https://www.gatsbyjs.com/docs/reference/config-files/gatsby-node/
  */
 
-const fs = require('fs')
-const path = require('path')
-
-// Datos simplificados para gatsby-node (evita problemas de ES modules)
-// Categorías: Cultura Z, Crush Files, Love Lab, Aesthetic Life, Pop Picks
+// Solo artículos con imágenes reales (8 artículos)
 const posts = [
-  { id: 1, category: "Cultura Z", author: "Admin" },
-  { id: 2, category: "Crush Files", author: "Admin" },
-  { id: 3, category: "Crush Files", author: "Admin" },
-  { id: 4, category: "Aesthetic Life", author: "Admin" },
-  { id: 5, category: "Pop Picks", author: "Admin" },
-  { id: 6, category: "Crush Files", author: "Admin" },
-  { id: 7, category: "Cultura Z", author: "Admin" },
-  { id: 8, category: "Cultura Z", author: "Admin" },
-  { id: 9, category: "Cultura Z", author: "Admin" },
-  { id: 10, category: "Cultura Z", author: "Admin" },
-  { id: 11, category: "Pop Picks", author: "Admin" },
-  { id: 12, category: "Pop Picks", author: "Admin" },
-  { id: 13, category: "Pop Picks", author: "Admin" },
-  { id: 14, category: "Pop Picks", author: "Admin" },
-  { id: 15, category: "Pop Picks", author: "Admin" },
-  { id: 16, category: "Crush Files", author: "Admin" },
-  { id: 17, category: "Aesthetic Life", author: "Admin" },
-  { id: 18, category: "Aesthetic Life", author: "Admin" },
-  { id: 19, category: "Aesthetic Life", author: "Admin" },
-  { id: 20, category: "Aesthetic Life", author: "Admin" },
-  { id: 21, category: "Cultura Z", author: "Admin" },
+  { id: 1, slug: "nikki-glasers-monologue-golden-globes-2026", category: "Crush Files", author: "Admin" },
+  { id: 2, slug: "tips-avoid-stomach-trouble-travel", category: "Aesthetic Life", author: "Admin" },
+  { id: 3, slug: "documentary-frugal-gourmet", category: "Pop Picks", author: "Admin" },
+  { id: 4, slug: "code-violet-earrings-guide", category: "Pop Picks", author: "Admin" },
+  { id: 5, slug: "steve-kerr-warriors-locker-room", category: "Pop Picks", author: "Admin" },
+  { id: 6, slug: "genshin-impact-luna-iv-preload", category: "Pop Picks", author: "Admin" },
+  { id: 7, slug: "enhypen-sunghoon-airport-chaos", category: "Crush Files", author: "Admin" },
+  { id: 8, slug: "consistent-sleep-schedule-health", category: "Aesthetic Life", author: "Admin" },
+]
+
+// Todos los autores del equipo
+const authors = [
+  { name: "Admin", slug: "admin" },
+  { name: "Luna", slug: "luna" },
+  { name: "Alex", slug: "alex" },
+  { name: "Mia", slug: "mia" },
+  { name: "Dani", slug: "dani" },
 ]
 
 /**
@@ -47,7 +39,21 @@ exports.createPages = async ({ actions }) => {
     defer: true,
   })
 
-  // 1. Crear páginas de categorías
+  // 1. Crear páginas de artículos individuales
+  console.log('\n📰 Creando páginas de artículos...')
+  posts.forEach(post => {
+    createPage({
+      path: `/post/${post.slug}`,
+      component: require.resolve("./src/templates/post.jsx"),
+      context: {
+        postId: post.id,
+        slug: post.slug,
+      },
+    })
+    console.log(`✅ Artículo: /post/${post.slug}`)
+  })
+
+  // 2. Crear páginas de categorías
   console.log('\n📁 Creando páginas de categorías...')
   const categories = [...new Set(posts.map(post => post.category).filter(Boolean))]
 
@@ -61,28 +67,23 @@ exports.createPages = async ({ actions }) => {
         slug,
       },
     })
-    console.log(`✅ Página creada: /category/${slug}`)
+    console.log(`✅ Categoría: /category/${slug}`)
   })
 
-  // 2. Crear páginas de autores
+  // 3. Crear páginas de autores (todos los del equipo)
   console.log('\n👤 Creando páginas de autores...')
-  const authorNames = [...new Set(posts.map(post => post.author).filter(Boolean))]
 
-  authorNames.forEach(authorName => {
-    const slug = authorName.toLowerCase().replace(/\s+/g, '-')
+  authors.forEach(author => {
     createPage({
-      path: `/author/${slug}`,
+      path: `/author/${author.slug}`,
       component: require.resolve("./src/templates/author.jsx"),
       context: {
-        authorName,
-        authorSlug: slug,
+        authorName: author.name,
+        authorSlug: author.slug,
       },
     })
-    console.log(`✅ Página creada: /author/${slug}`)
+    console.log(`✅ Autor: /author/${author.slug}`)
   })
 
-  console.log(`\n🎉 Total: ${categories.length} categorías + ${authorNames.length} autores\n`)
+  console.log(`\n🎉 Total: ${posts.length} artículos + ${categories.length} categorías + ${authors.length} autores\n`)
 }
-
-// onPostBuild deshabilitado temporalmente - usar gatsby-plugin-feed en su lugar
-// para generar RSS feeds sin problemas de ES modules

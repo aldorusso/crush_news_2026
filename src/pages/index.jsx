@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 import Aos from "aos"
 import Seo from "../components/seo"
-import WebsiteSchema from "../components/WebsiteSchema"
+import WebSiteSchema from "../components/WebSiteSchema"
 import SpeculationRules from "../components/SpeculationRules"
 import Section1 from "../common/view/index/Section1"
 import Section2 from "../common/view/index/Section2"
@@ -30,7 +30,7 @@ const Index = () => {
     <React.Fragment>
       <Layout>
         {/* Schema.org para la homepage */}
-        <WebsiteSchema />
+        <WebSiteSchema />
 
         {/* Speculation Rules para navegación instantánea */}
         <SpeculationRules mode="moderate" />

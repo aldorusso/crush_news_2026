@@ -8,11 +8,11 @@ const Section8 = () => {
     <React.Fragment>
       <section className="mt-8">
         <div className="container px-4 mx-auto">
-          <div className="grid grid-cols-3 gap-8">
-            <div className="col-span-3 md:col-span-2" data-aos="fade-up">
-              <div className="p-5 bg-white rounded-lg dark:bg-gray-800/70">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
+            <div className="md:col-span-2" data-aos="fade-up">
+              <div className="p-4 sm:p-5 bg-white rounded-xl sm:rounded-lg dark:bg-gray-800/70">
                 <div className="mb-4">
-                  <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white">
+                  <h5 className="text-lg sm:text-xl font-bold leading-none text-gray-900 dark:text-white">
                     Últimos Artículos
                   </h5>
                 </div>
@@ -20,31 +20,35 @@ const Section8 = () => {
                 {latestpost && latestpost.length > 0 ? (
                   latestpost.map(item => (
                     <div
-                      className="flex flex-col mb-5 lg:flex-row sm:mb-3 md:mb-6"
+                      className="flex gap-3 sm:gap-4 mb-4 sm:mb-5 pb-4 border-b dark:border-gray-700 last:border-0 last:pb-0 last:mb-0"
                       key={item.id}
                     >
-                      <Link to="/single-post">
+                      <Link to={item.link || "/single-post"} className="block w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-28 flex-shrink-0 overflow-hidden rounded-xl">
                         <img
-                          className="h-auto sm:max-w-xs lg:w-64 rounded-2xl"
-                          src={item.pic}
-                          alt="post "
+                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                          src={item.pic || placeholder}
+                          alt={item.title}
                         />
                       </Link>
-                      <div className="pt-2 lg:ms-4">
-                        <div className="capitalize text-sm text-[#062db9] font-medium dark:text-[#478cff]">
+                      <div className="flex flex-col flex-1 min-w-0 justify-center">
+                        <Link
+                          to={`/category/${item.category?.toLowerCase().replace(/\s+/g, '-')}`}
+                          className="text-[10px] sm:text-xs text-[#ff3750] font-medium uppercase"
+                        >
                           {item.category || "Categoría"}
-                        </div>
-                        <Link to="/single-post">
-                          <h5 className="mb-1 text-xl leading-normal capitalize font-medium text-gray-900 dark:text-white hover:text-[#062db9] dark:hover:text-[#478cff]">
+                        </Link>
+                        <Link to={item.link || "/single-post"}>
+                          <h5 className="text-sm sm:text-base md:text-lg leading-tight font-medium text-gray-900 dark:text-white hover:text-[#062db9] dark:hover:text-[#478cff] line-clamp-2 my-1">
                             {item.title || "Título del artículo"}
                           </h5>
                         </Link>
-                        <p className="mb-2 text-sm text-gray-500 sm:text-base dark:text-gray-300">
+                        <p className="hidden sm:block text-xs sm:text-sm text-gray-500 dark:text-gray-300 line-clamp-2 mb-1">
                           {item.excerpt || "Extracto del artículo..."}
                         </p>
-                        <div className="block gap-4 text-[12px] text-gray-500 dark:text-gray-400 uppercase">
-                          <span className="me-2 lg:me-1"> {item.author || "Autor"}</span>
-                          <span>{item.date || "Fecha"}</span>
+                        <div className="flex gap-2 text-[10px] sm:text-xs text-gray-500 dark:text-gray-400">
+                          <span>{item.author || "Autor"}</span>
+                          <span className="hidden sm:inline">•</span>
+                          <span className="hidden sm:inline">{item.date || "Fecha"}</span>
                         </div>
                       </div>
                     </div>
@@ -59,28 +63,34 @@ const Section8 = () => {
               </div>
             </div>
             <div
-              className="col-span-3 sm:col-span-2 md:col-span-1"
+              className="md:col-span-1"
               data-aos="fade-left"
             >
-              <div className="p-5 bg-white dark:bg-gray-800/70 rounded-lg">
+              <div className="p-4 sm:p-5 bg-white dark:bg-gray-800/70 rounded-xl sm:rounded-lg">
                 <div className="mb-4 border-b dark:border-gray-700">
-                  <h3 className="inline-block pb-4 text-xl font-bold tracking-wide uppercase border-b-2 border-[#ff3750] dark:text-white">
+                  <h3 className="inline-block pb-3 text-lg sm:text-xl font-bold tracking-wide uppercase border-b-2 border-[#ff3750] dark:text-white">
                     Populares
                   </h3>
                 </div>
                 {listdata && listdata.length > 0 ? (
-                  <ul>
+                  <ul className="space-y-0">
                     {listdata.map((item, idx) => (
-                      <li className="py-3 border-b dark:border-gray-700" key={idx}>
-                        <Link
-                          to="/single-post"
-                          className="text-sm font-medium text-gray-900 dark:text-white hover:text-[#062db9] dark:hover:text-[#478cff]"
-                        >
-                          {item.title || "Título del artículo"}
-                        </Link>
-                        <div className="block gap-4 text-[11px] text-gray-500 dark:text-gray-400 uppercase mt-1">
-                          <span className="me-2 lg:me-1">{item.author || "Autor"}</span>
-                          <span>{item.date || "Fecha"}</span>
+                      <li className="py-3 border-b dark:border-gray-700 last:border-0" key={idx}>
+                        <div className="flex items-start gap-3">
+                          <span className="flex-shrink-0 w-6 h-6 bg-[#ff3750] text-white text-xs font-bold rounded flex items-center justify-center">
+                            {idx + 1}
+                          </span>
+                          <div className="flex-1 min-w-0">
+                            <Link
+                              to={item.link || "/single-post"}
+                              className="text-sm font-medium text-gray-900 dark:text-white hover:text-[#ff3750] dark:hover:text-[#ff3750] line-clamp-2"
+                            >
+                              {item.title || "Título del artículo"}
+                            </Link>
+                            <div className="flex gap-2 text-[10px] text-gray-500 dark:text-gray-400 mt-1">
+                              <span>{item.author || "Autor"}</span>
+                            </div>
+                          </div>
                         </div>
                       </li>
                     ))}

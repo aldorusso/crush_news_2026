@@ -1,7 +1,9 @@
 import {
   section1,
   section2,
+  sideBanners,
   categories,
+  editorPicks,
   lifestyle,
   centerpost,
   leadingdata,
@@ -41,7 +43,9 @@ import {
 export {
   section1,
   section2,
+  sideBanners,
   categories,
+  editorPicks,
   lifestyle,
   centerpost,
   leadingdata,

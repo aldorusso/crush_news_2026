@@ -1,12 +1,10 @@
 import { Link } from "gatsby"
 import React from "react"
-import placeholder from "../../assets/images/placeholder"
-const layout36 = placeholder
-const layout37 = placeholder
-const layout38 = placeholder
-const layout39 = placeholder
-const layout40 = placeholder
-const layout41 = placeholder
+import { posts } from "../../common/data/siteData"
+
+// Get 3 latest and 3 popular posts
+const latestPosts = [...posts].sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 3)
+const popularPosts = [...posts].sort((a, b) => b.views - a.views).slice(0, 3)
 
 const Footer = () => {
   return (
@@ -26,75 +24,31 @@ const Footer = () => {
                     </h5>
                   </div>
                   <ul className="">
-                    <li className="py-1 sm:py-2">
-                      <div className="flex items-center">
-                        <div className="flex-shrink-0">
-                          <img
-                            className="rounded-2xl"
-                            src={layout36}
-                            alt="Neil "
-                          />
-                        </div>
-                        <div className="flex-1 min-w-0 ms-4">
-                          <Link
-                            to="/single-post"
-                            className="text-sm font-medium text-gray-900 dark:text-white hover:text-[#062db9] dark:hover:text-[#478cff]"
-                          >
-                            Título del Artículo
-                          </Link>
-                          <div className="block gap-4 text-[11px] text-gray-500 dark:text-gray-400 uppercase">
-                            <span className="me-2 lg:me-1"> Autor</span>
-                            <span>7 meses</span>
+                    {latestPosts.map(post => (
+                      <li className="py-1 sm:py-2" key={post.id}>
+                        <div className="flex items-center">
+                          <div className="flex-shrink-0">
+                            <img
+                              className="rounded-2xl w-16 h-16 object-cover"
+                              src={post.image}
+                              alt={post.title}
+                            />
+                          </div>
+                          <div className="flex-1 min-w-0 ms-4">
+                            <Link
+                              to={post.link}
+                              className="text-sm font-medium text-gray-900 dark:text-white hover:text-[#062db9] dark:hover:text-[#478cff] line-clamp-2"
+                            >
+                              {post.title}
+                            </Link>
+                            <div className="block gap-4 text-[11px] text-gray-500 dark:text-gray-400 uppercase">
+                              <span className="me-2 lg:me-1">{post.author}</span>
+                              <span>{post.dateFormatted}</span>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </li>
-                    <li className="py-1 sm:py-2">
-                      <div className="flex items-center">
-                        <div className="flex-shrink-0">
-                          <img
-                            className="rounded-2xl"
-                            src={layout37}
-                            alt="Neil "
-                          />
-                        </div>
-                        <div className="flex-1 min-w-0 ms-4">
-                          <Link
-                            to="/single-post"
-                            className="text-sm font-medium text-gray-900 dark:text-white hover:text-[#062db9] dark:hover:text-[#478cff]"
-                          >
-                            Título del Artículo
-                          </Link>
-                          <div className="block gap-4 text-[11px] text-gray-500 dark:text-gray-400 uppercase">
-                            <span className="me-2 lg:me-1"> Autor</span>
-                            <span>7 meses</span>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                    <li className="py-1 sm:py-2">
-                      <div className="flex items-center">
-                        <div className="flex-shrink-0">
-                          <img
-                            className="rounded-2xl"
-                            src={layout38}
-                            alt="Neil "
-                          />
-                        </div>
-                        <div className="flex-1 min-w-0 ms-4">
-                          <Link
-                            to="/single-post"
-                            className="text-sm font-medium text-gray-900 dark:text-white hover:text-[#062db9] dark:hover:text-[#478cff]"
-                          >
-                            Título del Artículo
-                          </Link>
-                          <div className="block gap-4 text-[11px] text-gray-500 dark:text-gray-400 uppercase">
-                            <span className="me-2 lg:me-1"> Autor</span>
-                            <span>7 meses</span>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
+                      </li>
+                    ))}
                   </ul>
                 </div>
 
@@ -108,75 +62,31 @@ const Footer = () => {
                     </h5>
                   </div>
                   <ul className="">
-                    <li className="py-1 sm:py-2">
-                      <div className="flex items-center overflow-hidden">
-                        <div className="flex-shrink-0">
-                          <img
-                            className="rounded-2xl"
-                            src={layout39}
-                            alt="Neil "
-                          />
-                        </div>
-                        <div className="flex-1 min-w-0 ms-4">
-                          <Link
-                            to="/single-post"
-                            className="text-sm font-medium text-gray-900 dark:text-white hover:text-[#062db9] dark:hover:text-[#478cff] break-words"
-                          >
-                            Título del Artículo
-                          </Link>
-                          <div className="block gap-4 text-[11px] text-gray-500 dark:text-gray-400 uppercase">
-                            <span className="me-2 lg:me-1"> Autor</span>
-                            <span>7 meses</span>
+                    {popularPosts.map(post => (
+                      <li className="py-1 sm:py-2" key={post.id}>
+                        <div className="flex items-center overflow-hidden">
+                          <div className="flex-shrink-0">
+                            <img
+                              className="rounded-2xl w-16 h-16 object-cover"
+                              src={post.image}
+                              alt={post.title}
+                            />
+                          </div>
+                          <div className="flex-1 min-w-0 ms-4">
+                            <Link
+                              to={post.link}
+                              className="text-sm font-medium text-gray-900 dark:text-white hover:text-[#062db9] dark:hover:text-[#478cff] break-words line-clamp-2"
+                            >
+                              {post.title}
+                            </Link>
+                            <div className="block gap-4 text-[11px] text-gray-500 dark:text-gray-400 uppercase">
+                              <span className="me-2 lg:me-1">{post.author}</span>
+                              <span>{post.views} vistas</span>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </li>
-                    <li className="py-1 sm:py-2">
-                      <div className="flex items-center">
-                        <div className="flex-shrink-0">
-                          <img
-                            className="rounded-2xl"
-                            src={layout40}
-                            alt="Neil "
-                          />
-                        </div>
-                        <div className="flex-1 min-w-0 ms-4">
-                          <Link
-                            to="/single-post"
-                            className="text-sm font-medium text-gray-900 dark:text-white hover:text-[#062db9] dark:hover:text-[#478cff]"
-                          >
-                            Título del Artículo
-                          </Link>
-                          <div className="block gap-4 text-[11px] text-gray-500 dark:text-gray-400 uppercase">
-                            <span className="me-2 lg:me-1"> Autor</span>
-                            <span>7 meses</span>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                    <li className="py-1 sm:py-2">
-                      <div className="flex items-center">
-                        <div className="flex-shrink-0">
-                          <img
-                            className="rounded-2xl"
-                            src={layout41}
-                            alt="Neil "
-                          />
-                        </div>
-                        <div className="flex-1 min-w-0 ms-4">
-                          <Link
-                            to="/single-post"
-                            className="text-sm font-medium text-gray-900 dark:text-white hover:text-[#062db9] dark:hover:text-[#478cff]"
-                          >
-                            Título del Artículo
-                          </Link>
-                          <div className="block gap-4 text-[11px] text-gray-500 dark:text-gray-400 uppercase">
-                            <span className="me-2 lg:me-1"> Autor</span>
-                            <span>7 meses</span>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
+                      </li>
+                    ))}
                   </ul>
                 </div>
 
@@ -192,91 +102,15 @@ const Footer = () => {
                   <div className="flex justify-between">
                     <div>
                       <h2 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">
-                        Cultura Z:
-                      </h2>
-                      <ul className="max-w-md space-y-1 text-gray-500 list-none list-inside dark:text-gray-400">
-                        <li>
-                          <Link
-                            to="/glosario"
-                            className="hover:text-[#062db9] text-base dark:hover:text-[#478cff]"
-                          >
-                            Glosario
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            to="/internet-culture"
-                            className="hover:text-[#062db9] text-base dark:hover:text-[#478cff]"
-                          >
-                            Internet Culture
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            to="/manual-digital"
-                            className="hover:text-[#062db9] text-base dark:hover:text-[#478cff]"
-                          >
-                            Manual Digital
-                          </Link>
-                        </li>
-                      </ul>
-                      <h2 className="mt-6 mb-2 text-lg font-semibold text-gray-900 dark:text-white">
                         Crush Files:
                       </h2>
                       <ul className="max-w-md space-y-1 text-gray-500 list-none list-inside dark:text-gray-400">
                         <li>
                           <Link
-                            to="/idolos"
+                            to="/category/crush-files"
                             className="hover:text-[#062db9] text-base dark:hover:text-[#478cff]"
                           >
-                            Ídolos
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            to="/evolucion-estilo"
-                            className="hover:text-[#062db9] text-base dark:hover:text-[#478cff]"
-                          >
-                            Evolución de Estilo
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            to="/ranking-crush"
-                            className="hover:text-[#062db9] text-base dark:hover:text-[#478cff]"
-                          >
-                            Ranking Crush
-                          </Link>
-                        </li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h2 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">
-                        Love Lab:
-                      </h2>
-                      <ul className="max-w-md space-y-1 text-gray-500 list-none list-inside dark:text-gray-400">
-                        <li>
-                          <Link
-                            to="/tu-crush"
-                            className="hover:text-[#062db9] text-base dark:hover:text-[#478cff]"
-                          >
-                            Tu Crush
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            to="/relaciones"
-                            className="hover:text-[#062db9] text-base dark:hover:text-[#478cff]"
-                          >
-                            Relaciones
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            to="/bienestar-mental"
-                            className="hover:text-[#062db9] text-base dark:hover:text-[#478cff]"
-                          >
-                            Bienestar Mental
+                            Ver todos
                           </Link>
                         </li>
                       </ul>
@@ -286,26 +120,10 @@ const Footer = () => {
                       <ul className="max-w-md space-y-1 text-gray-500 list-none list-inside dark:text-gray-400">
                         <li>
                           <Link
-                            to="/estilos"
+                            to="/category/aesthetic-life"
                             className="hover:text-[#062db9] text-base dark:hover:text-[#478cff]"
                           >
-                            Estilos
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            to="/beauty-skincare"
-                            className="hover:text-[#062db9] text-base dark:hover:text-[#478cff]"
-                          >
-                            Beauty & Skincare
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            to="/deco-room-setup"
-                            className="hover:text-[#062db9] text-base dark:hover:text-[#478cff]"
-                          >
-                            Deco & Room Setup
+                            Ver todos
                           </Link>
                         </li>
                       </ul>
@@ -315,26 +133,49 @@ const Footer = () => {
                       <ul className="max-w-md space-y-1 text-gray-500 list-none list-inside dark:text-gray-400">
                         <li>
                           <Link
-                            to="/series-pelis"
+                            to="/category/pop-picks"
                             className="hover:text-[#062db9] text-base dark:hover:text-[#478cff]"
                           >
-                            Series & Pelis
+                            Ver todos
+                          </Link>
+                        </li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h2 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">
+                        Sitio:
+                      </h2>
+                      <ul className="max-w-md space-y-1 text-gray-500 list-none list-inside dark:text-gray-400">
+                        <li>
+                          <Link
+                            to="/about"
+                            className="hover:text-[#062db9] text-base dark:hover:text-[#478cff]"
+                          >
+                            Sobre Nosotros
                           </Link>
                         </li>
                         <li>
                           <Link
-                            to="/musica-fandoms"
+                            to="/authors"
                             className="hover:text-[#062db9] text-base dark:hover:text-[#478cff]"
                           >
-                            Música & Fandoms
+                            Autores
                           </Link>
                         </li>
                         <li>
                           <Link
-                            to="/apps-juegos"
+                            to="/contact"
                             className="hover:text-[#062db9] text-base dark:hover:text-[#478cff]"
                           >
-                            Apps & Juegos
+                            Contacto
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            to="/advertise"
+                            className="hover:text-[#062db9] text-base dark:hover:text-[#478cff]"
+                          >
+                            Publicidad
                           </Link>
                         </li>
                       </ul>

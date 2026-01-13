@@ -2,7 +2,7 @@ import { Link } from "gatsby"
 import React from "react"
 import { Autoplay, Navigation } from "swiper/modules"
 import { Swiper, SwiperSlide } from "swiper/react"
-import avatar from "../../../assets/images/placeholder"
+import getAvatar from "../../../utils/avatar"
 import { centerpost } from "../../data"
 
 const Section4 = () => {
@@ -14,7 +14,7 @@ const Section4 = () => {
             <Swiper
               slidesPerView={1}
               autoplay={{
-                delay: 2000,
+                delay: 3000,
                 disableOnInteraction: false,
               }}
               breakpoints={{
@@ -44,36 +44,36 @@ const Section4 = () => {
                 {centerpost &&
                   centerpost.map(item => (
                     <SwiperSlide key={item.id}>
-                      <div className="flex flex-col items-center mb-5 md:flex-row md:max-w-xl sm:mb-3 md:mb-0">
-                        <Link to="/single-post">
+                      <div className="flex gap-3 sm:gap-4 p-2 sm:p-0">
+                        <Link to={item.link} className="block w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 flex-shrink-0 overflow-hidden rounded-xl">
                           <img
-                            className="h-auto max-w-40 sm:w-20 lg:w-40 rounded-2xl"
+                            className="w-full h-full object-cover"
                             src={item.pic}
-                            alt="post"
+                            alt={item.title}
                           />
                         </Link>
-                        <div className="flex flex-col p-4 sm:py-0 ">
-                          <Link to="/single-post">
-                            <h5 className="mb-1 text-md leading-normal capitalize font-medium text-gray-900 dark:text-white hover:text-[#062db9] dark:hover:text-[#478cff]">
-                              Las últimas noticias sobre tecnología y actualidad.
-                              Mantente informado de todo lo que sucede.
+                        <div className="flex flex-col flex-1 min-w-0 justify-center">
+                          <Link
+                            to={`/category/${item.category?.toLowerCase().replace(/\s+/g, '-')}`}
+                            className="text-[10px] sm:text-xs text-[#ff3750] uppercase font-medium mb-1"
+                          >
+                            {item.category}
+                          </Link>
+                          <Link to={item.link}>
+                            <h5 className="text-sm sm:text-base leading-tight font-medium text-gray-900 dark:text-white hover:text-[#062db9] dark:hover:text-[#478cff] line-clamp-2 mb-1">
+                              {item.title}
                             </h5>
                           </Link>
-                          <div className="flex items-center justify-start gap-2 my-2 text-xs sm:text-sm dark:text-gray-400">
+                          <div className="flex items-center gap-2 text-[10px] sm:text-xs text-gray-500 dark:text-gray-400">
                             <img
-                              src={avatar}
-                              alt="avtar"
-                              className="rounded-full max-w-10"
+                              src={getAvatar(item.author || "admin")}
+                              alt="avatar"
+                              className="rounded-full w-5 h-5 sm:w-6 sm:h-6 bg-gray-100"
                             />
-                            <span className="text-[12px]"> Carlos García</span>
-                            <span className="text-[12px]"> August 7, 2024</span>
+                            <span>{item.author}</span>
+                            <span className="hidden sm:inline">•</span>
+                            <span className="hidden sm:inline">{item.date}</span>
                           </div>
-                          <Link
-                            to="/single-post"
-                            className="font-medium text-[#062db9] dark:text-blue-500 underline"
-                          >
-                            Leer más
-                          </Link>
                         </div>
                       </div>
                     </SwiperSlide>

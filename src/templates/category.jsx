@@ -49,7 +49,7 @@ const CategoryTemplate = ({ pageContext }) => {
                 className="group bg-white dark:bg-slate-800 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow"
               >
                 {/* Imagen del artículo */}
-                <Link to={post.url || "/single-post"} className="block">
+                <Link to={post.link || "/"} className="block">
                   <div className="aspect-video overflow-hidden">
                     <img
                       src={post.image}
@@ -72,7 +72,7 @@ const CategoryTemplate = ({ pageContext }) => {
 
                   {/* Título */}
                   <h2 className="text-xl font-semibold mb-3 text-black dark:text-white group-hover:text-[#ff3750] transition-colors">
-                    <Link to={post.url || "/single-post"}>
+                    <Link to={post.link || "/"}>
                       {post.title}
                     </Link>
                   </h2>

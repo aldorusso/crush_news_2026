@@ -1,5 +1,5 @@
 import React from "react"
-import avatar from "../assets/images/placeholder"
+import getAvatar from "../utils/avatar"
 
 const ArticlesModal = ({ article }) => {
   return (
@@ -21,7 +21,7 @@ const ArticlesModal = ({ article }) => {
           </div>
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <img className="w-8 h-8 rounded-full" src={avatar} alt="avatar" />
+              <img className="w-8 h-8 rounded-full bg-white" src={getAvatar(article.author || "admin")} alt="avatar" />
             </div>
             <div className="flex-1 min-w-0 ms-2">
               <p className="text-sm font-normal text-white truncate dark:text-white">

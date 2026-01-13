@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "gatsby"
 import { Autoplay, Pagination } from "swiper/modules"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { section1 } from "../../data"
@@ -41,20 +42,20 @@ const Section1 = () => {
               {section1 &&
                 section1.map(item => (
                   <SwiperSlide key={item.id}>
-                    <div className="flex items-center flex-co md:flex-row md:max-w-xl md:items-start">
+                    <Link to={item.link} className="flex items-center flex-co md:flex-row md:max-w-xl md:items-start group">
                       <span className="text-[#062db9] text-2xl font-semibold dark:text-[#478cff]">
                         {item.number}
                       </span>
-                      <div className="flex flex-col p-4 sm:py-0 ">
-                        <h3 className="text-sm hover:text-[#062db9] dark:text-white dark:hover:text-[#478cff] font-medium">
-                          {item.title}{" "}
+                      <div className="flex flex-col p-4 sm:py-0">
+                        <h3 className="text-sm group-hover:text-[#062db9] dark:text-white dark:group-hover:text-[#478cff] font-medium line-clamp-2">
+                          {item.title}
                         </h3>
                         <div className="block gap-4 text-[11px] text-gray-500 dark:text-gray-400 uppercase">
-                          <span className="me-2 lg:me-1"> {item.author}</span>
+                          <span className="me-2 lg:me-1">{item.author}</span>
                           <span>{item.time_ago}</span>
                         </div>
                       </div>
-                    </div>
+                    </Link>
                   </SwiperSlide>
                 ))}
             </Swiper>

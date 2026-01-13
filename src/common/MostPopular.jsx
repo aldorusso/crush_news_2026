@@ -36,7 +36,7 @@ const MostPopular = ({ swiperData }) => {
               key={item.id}
             >
               <div className="flex flex-co md:flex-row md:max-w-xl mb-5 sm:mb-3 md:mb-5">
-                <Link to="/single-post">
+                <Link to={item.link || "/"}>
                   <img
                     className="h-auto max-w-40 sm:w-20 lg:w-40 rounded-lg"
                     src={item.image}
@@ -51,7 +51,7 @@ const MostPopular = ({ swiperData }) => {
                   )}
                   <h3 className="mb-2 text-sm ">
                     <Link
-                      to={item.link || "/single-post"}
+                      to={item.link || "/"}
                       className="hover:text-[#ff3750] dark:text-white dark:hover:text-[#ff3750]"
                     >
                       {item.title || "Título del Artículo"}
